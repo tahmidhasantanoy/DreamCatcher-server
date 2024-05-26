@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const mongoose = require("mongoose");
+require("./src/Connect/dbConnect");
 
 app.get("/", (req, res) => {
-  res.send("Hello tahmid!");
+  res.send("Dream catcher is running");
 });
 
 app.listen(port, () => {
