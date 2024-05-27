@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
           require: true,
           minLength:3,
           maxLength: 20,
-          trim: true
+          trim: true,
 
       },
       email: {
