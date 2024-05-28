@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -15,18 +14,21 @@ const userSchema = new Schema({
     unique: [true, "This email already exists"],
   },
   phone: {
-    type: String, // Changed from Number to String
+    type: String,
     required: [true, "Phone number is required"],
     minLength: [11, "Phone number must be 11 digits"],
     maxLength: [11, "Phone number must be 11 digits"],
-    unique: [true, "This phone number already exists"],
   },
   password: {
     type: String,
     required: true,
   },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("Users", userSchema);
 
 module.exports = User;
