@@ -2,6 +2,15 @@ const express = require("express");
 const photographer_route = express.Router();
 const photographerSchemaModel = require("../Model/photographerScema");
 
+photographer_route.get("/photographer-route", async (req, res) => {
+  try {
+    const photographerAllInfo = await photographerSchemaModel.find();
+    res.status(201).send(photographerAllInfo);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
 photographer_route.post("/photographer-route", async (req, res) => {
   try {
     const photographerInformation = req.body;

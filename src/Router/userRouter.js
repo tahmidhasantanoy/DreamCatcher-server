@@ -10,7 +10,7 @@ router.post("/user", async (req, res) => {
     const userData = await newUser.save(); //Save to DB
     res.status(201).send({ userData });
   } catch (error) {
-res.status(500).send(error.message);
+    res.status(500).send(error.message);
   }
 });
 module.exports = router;
