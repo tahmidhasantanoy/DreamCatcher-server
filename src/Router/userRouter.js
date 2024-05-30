@@ -3,14 +3,14 @@ const router = express.Router();
 const User = require("../Model/User");
 
 router.post("/user", async (req, res) => {
-    try {
-      const data =req.body
+  try {
+    const data = req.body;
     // data store using model
     const newUser = new User(data);
-    const userData = await newUser.save();
+    const userData = await newUser.save(); //Save to DB
     res.status(201).send({ userData });
   } catch (error) {
-    res.status(500).send(error.message);
+res.status(500).send(error.message);
   }
 });
 module.exports = router;
