@@ -2,13 +2,15 @@ const express = require("express");
 const router = express.Router();
 const User = require("../Model/User");
 
+
 // create user
 router.post("/register", async (req, res) => {
+
   try {
     const data = req.body;
     // data store using model
     const newUser = new User(data);
-    const userData = await newUser.save();
+    const userData = await newUser.save(); //Save to DB
     res.status(201).send({ userData });
   } catch (error) {
     res.status(500).send(error.message);
