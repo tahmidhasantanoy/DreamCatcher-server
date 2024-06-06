@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../Model/User");
-
+var jwt = require('jsonwebtoken');
+const verifyJWT = require('../TokenVerify/TokenVerify')
+require("dotenv").config();
 
 // create user
 router.post("/register", async (req, res) => {
@@ -18,7 +20,7 @@ router.post("/register", async (req, res) => {
 });
 
 // find all user
-router.get("/users", async (req, res) => {
+router.get("/users",verifyJWT, async (req, res) => {
   try {
     const users = await User.find();
     if (users) {
@@ -94,5 +96,13 @@ router.put("/users_to_admin/:email", async (req, res) => {
     res.status(500).send(error.message);
   }
 });
+
+router.post('/login', async (req, res) => {
+  const data = req.body;
+ const token = jwt.sign({
+    data: data
+ },process.env.ACCESS_TOKEN_SECRET , { expiresIn: '1h' });
+  res.send({token: token})
+})
 
 module.exports = router;
