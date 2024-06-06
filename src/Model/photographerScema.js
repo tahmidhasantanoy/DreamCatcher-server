@@ -7,6 +7,12 @@ const photographyInfoSchema = new mongoose.Schema({
     minLength: 3,
     maxLength: 12,
   },
+  role: {
+    type: String,
+  },
+  photoURL: {
+    type: [String],
+  },
   age: {
     type: Number,
     required: true,
